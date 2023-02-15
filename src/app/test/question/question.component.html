@@ -1,0 +1,49 @@
+<div class="container mt-5">
+    <p class="p1" *ngIf="isFetching"><strong>Loading.....</strong></p>
+    <div class="card">
+        <div class="d-flex justify-content-between p-3">
+            <div class="quiz-header">
+                <p style="size: 5vw;"><strong>Java Quiz</strong></p>
+            </div>
+        </div>
+
+        <ng-container *ngIf="!isQuizCompleted">
+            <div class="d-flex justify-content-around py-3">
+                <!--Questions Remaining-->
+                <div class="question-remaining">
+                    <span>Question {{currentQuestion+1}} of {{questionList.length}}</span>
+                </div>
+            </div>
+            <div class="question">
+                <div class="card">
+                    <p>{{questionList[currentQuestion]?.questionText}}</p>
+                </div>
+            </div>
+            <div class="options">
+                <ol *ngFor="let option of questionList[currentQuestion]?.options">
+                    <li (click)="answer(currentQuestion+1,option,questionList[currentQuestion])">
+                        <div class="card">
+                            {{option.text}}
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="isQuizCompleted">
+            <div class="row d-flex justify-content-between">
+                <img style="width: 50%;" class="img-fluid col-sm-12 mx-auto"
+                    src="https://images.unsplash.com/photo-1517076731070-13c65bcb2e86?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8dGhhbmtzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60"
+                    alt="Thank You">
+                <div class="result text-center col-md-6 col-sm-12">
+                    <h3>Thank You for giving the quiz.</h3>
+                    <p>You have completed the quiz.</p>
+                    <p>Click the below button to view result.</p>
+                    <button type="button" (click)="resultPage()" class="btn btn-outline-primary">View Result</button>
+                </div>
+            </div>
+
+        </ng-container>
+
+    </div>
+</div>

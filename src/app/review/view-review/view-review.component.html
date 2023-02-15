@@ -1,0 +1,22 @@
+<p class="mt-5 p1">Your Test Review</p>
+<div class="container mt-5">
+    <div class="card mt-2" *ngFor="let r of review; index as i">
+        <div class="card-body">
+            <h5 class="card-title">Question {{i+1}}: {{r._question}}</h5>
+            <div class="container mt-3">
+                <p><strong>Your Answer: </strong>{{r._userAnswer}}</p>
+                <p><strong>Correct Answer: </strong>{{r._correctAnswer}}</p>
+                <div class="alert alert-success" role="alert" *ngIf="r._userAnswer == r._correctAnswer">
+                    <p><strong>Status: <i class="fa fa-check" aria-hidden="true"></i>
+                        </strong></p>
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="r._userAnswer != r._correctAnswer">
+                    <p><strong>Status: <i class="fa fa-times" aria-hidden="true"></i></strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="c1">
+        <button type="button" (click)="goToHome()" class="btn btn-outline-primary">Home Page</button>
+    </div>
+</div>
